@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id String @id @default(cuid())
+  name String
+  email String @unique
+  passwordHash String
+  role Role @default(PHARMACIST)
+  createdAt DateTime @default(now())
+  movements Movement[]
+}
+
+model Medicine {
+  id String @id @default(cuid())
+  name String
+  activeIngredient String
+  form String
+  dosage String
+  unit String
+  minStock Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+  batches Batch[]
+}
+
+model Batch {
+  id String @id @default(cuid())
+  batchNumber String 
+  expiryDate DateTime
+  quantity Int
+  receivedAt DateTime @default(now())
+  supplier String?
+  movements Movement[]
+  medicineId String 
+  medicine Medicine @relation(fields: [medicineId], references: [id])
+  @@unique([batchNumber, medicineId])
+}
+
+model Movement {
+  id String @id @default(cuid())
+  type MovementType 
+  quantity Int
+  note String?
+  createdAt DateTime @default(now())
+  userId String
+  batchId String
+  batch Batch @relation(fields: [batchId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  PHARMACIST
+}
+
+enum MovementType {
+  RECEIPT
+  ISSUE
+  WRITE_OFF
+}
