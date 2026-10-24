@@ -1,0 +1,26 @@
+:root {
+    --bg-dark: #0b110f;
+    --bg-surface: #111a17;
+    --bg-elevated: #16211d;
+    --border-dark: #22302b;
+    --border-hover: #2f4239;
+
+    --accent-green: #10b981;
+    --emerald-hover: #34d399;
+    --emerald-active: #0ea372;
+    --neon-green: #4ade80;
+    --sage: #9cb8a6;
+    --sage-muted: #6f8a7d;
+
+    --text-primary: #e6f2ec;
+    --text-secondary: #9cb8a6;
+
+    --glow-green: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    --shadow-card: 0 20px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px -10px rgba(16, 185, 129, 0.15);
+    --transition-base: 180ms ease;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}

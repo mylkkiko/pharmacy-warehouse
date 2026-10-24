@@ -5,6 +5,7 @@ import "@mantine/notifications/styles.css";
 import "./globals.css";
 import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { theme } from "@/theme";
 
 export const metadata: Metadata = {
   title: "Pharmacy warehouse",
@@ -15,10 +16,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript forceColorScheme="dark" />
       </head>
       <body>
-        <MantineProvider>
+        <MantineProvider theme={theme} forceColorScheme="dark">
           <Notifications />
           {children}
         </MantineProvider>
