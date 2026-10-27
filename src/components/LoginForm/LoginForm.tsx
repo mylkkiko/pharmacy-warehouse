@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginInput, loginSchema } from "@/lib/validations/auth";
-import { logIn } from "@/lib/actions/auth";
+import { auth } from "@/lib/actions/auth";
 import { Alert, Button, PasswordInput, Stack, TextInput } from "@mantine/core";
 import styles from "./LoginForm.module.css";
 
@@ -26,7 +26,7 @@ export const LoginForm = () => {
 
     const onSubmit = async (data: LoginInput) => {
         setError(null);
-        const result = await logIn(data);
+        const result = await auth(data);
         if (result?.error) {
             setError(result.error);
         }

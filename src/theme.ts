@@ -13,18 +13,18 @@ const emerald: MantineColorsTuple = [
     "#05573c",
 ];
 
-// Mantine's dark scale with a cool green tint: [0] text … [7] body background
+// Mantine's graphite dark scale: [0] text … [7] body background
 const dark: MantineColorsTuple = [
-    "#e6f2ec",
-    "#c3d4cb",
-    "#9cb8a6",
-    "#6f8a7d",
-    "#3a4a43",
-    "#22302b",
-    "#16211d",
-    "#0b110f",
-    "#080d0b",
-    "#050807",
+    "#e6ebe9",
+    "#c4ccc9",
+    "#9aa5a1",
+    "#6e7a76",
+    "#3a4044",
+    "#2c3036",
+    "#212529",
+    "#1a1d1e",
+    "#151819",
+    "#0f1112",
 ];
 
 export const theme = createTheme({
