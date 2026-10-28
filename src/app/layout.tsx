@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="en" {...mantineHtmlProps} data-mantine-color-scheme="dark">
       <head>
-        <ColorSchemeScript forceColorScheme="dark" />
+        
       </head>
       <body>
         <MantineProvider theme={theme} forceColorScheme="dark">

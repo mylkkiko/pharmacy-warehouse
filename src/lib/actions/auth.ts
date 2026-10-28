@@ -15,7 +15,6 @@ export const auth = async (data: LoginInput) => {
     }
 }
 
-
 export const logOut = async () => {
     await signOut({ redirectTo: "/login" });
 }

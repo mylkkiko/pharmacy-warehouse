@@ -1,0 +1,40 @@
+.button {
+    --accent-green: #10b981;
+    --accent-forest: #059669;
+    --text-on-accent: #0f1112;
+    --transition: 180ms ease;
+
+    height: 40px;
+    padding: 0 18px;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-forest));
+    color: var(--text-on-accent);
+    font-weight: 600;
+    box-shadow: 0 6px 18px -6px rgba(16, 185, 129, 0.55);
+    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+}
+
+.button:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 10px 24px -6px rgba(16, 185, 129, 0.7);
+    transform: translateY(-1px);
+}
+
+.button:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+}
+
+.button:focus-visible {
+    outline: 2px solid #34d399;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+
+    .button:hover {
+        transform: none;
+    }
+}

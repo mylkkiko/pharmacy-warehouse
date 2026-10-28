@@ -1,0 +1,20 @@
+.header {
+    --accent-sage: #a7f3d0;
+    --text-primary: #e6ebe9;
+    --text-muted: #9aa5a1;
+}
+
+.title {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--text-muted);
+}
+
+.count {
+    color: var(--accent-sage);
+    font-weight: 600;
+}
