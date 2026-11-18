@@ -49,7 +49,7 @@ export default async function MedicinesPage(props: PageProps<"/medicines">) {
                     </Text>
                 </Stack>
                 <Group gap="sm">
-                    <SearchInput />
+                    <SearchInput placeholder="Search by name..." />
                     <LinkButton href="/medicines/new" leftSection={<IconPlus size={18} stroke={2} />}>
                         Add medicine
                     </LinkButton>

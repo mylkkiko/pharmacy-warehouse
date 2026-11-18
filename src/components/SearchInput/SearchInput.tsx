@@ -6,7 +6,11 @@ import { IconSearch } from '@tabler/icons-react';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import styles from './SearchInput.module.css';
 
-export const SearchInput = () => {
+type SearchInputProps = {
+  placeholder?: string;
+};
+
+export const SearchInput = ({ placeholder }: SearchInputProps) => {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -27,7 +31,7 @@ export const SearchInput = () => {
                 defaultValue={searchParams.get("q")?.toString()}
                 leftSection={<IconSearch size={16} />}
                 onChange={(e) => {handleSearch(e.currentTarget.value)}}
-                placeholder="Search medicines..."
+                placeholder={placeholder ?? "Search..."}
                 aria-label="Search medicines"
                 classNames={{
                     root: styles.root,

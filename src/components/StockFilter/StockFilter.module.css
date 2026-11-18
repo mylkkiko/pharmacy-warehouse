@@ -1,0 +1,27 @@
+.root {
+    background-color: #212529;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.indicator {
+    background-color: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    box-shadow: none;
+}
+
+.label {
+    color: #9aa5a1;
+    font-weight: 500;
+    transition: color 160ms ease;
+}
+
+.label:hover,
+.label[data-active] {
+    color: #a7f3d0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .label {
+        transition: none;
+    }
+}
