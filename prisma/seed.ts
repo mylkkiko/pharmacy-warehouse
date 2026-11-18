@@ -143,6 +143,7 @@ const start = async () => {
       {
         batchNumber: "PAR-2401",
         expiryDate: dayjs().add(18, "month").toDate(),
+        unitPrice: 0.05,
         quantity: 500,
         receivedAt: dayjs().subtract(40, "day").toDate(),
         supplier: "MedSupply Co.",
@@ -151,6 +152,7 @@ const start = async () => {
       {
         batchNumber: "PAR-2402",
         expiryDate: dayjs().add(15, "day").toDate(),
+        unitPrice: 0.05,
         quantity: 80,
         receivedAt: dayjs().subtract(200, "day").toDate(),
         supplier: "MedSupply Co.",
@@ -159,6 +161,7 @@ const start = async () => {
       {
         batchNumber: "IBU-2401",
         expiryDate: dayjs().add(12, "month").toDate(),
+        unitPrice: 0.08,
         quantity: 90,
         receivedAt: dayjs().subtract(20, "day").toDate(),
         supplier: "PharmaLine Ltd.",
@@ -167,6 +170,7 @@ const start = async () => {
       {
         batchNumber: "AMX-2401",
         expiryDate: dayjs().subtract(10, "day").toDate(),
+        unitPrice: 0.15,
         quantity: 40,
         receivedAt: dayjs().subtract(300, "day").toDate(),
         supplier: "PharmaLine Ltd.",
@@ -175,6 +179,7 @@ const start = async () => {
       {
         batchNumber: "AMX-2402",
         expiryDate: dayjs().add(10, "month").toDate(),
+        unitPrice: 0.15,
         quantity: 200,
         receivedAt: dayjs().subtract(15, "day").toDate(),
         supplier: "PharmaLine Ltd.",
@@ -183,6 +188,7 @@ const start = async () => {
       {
         batchNumber: "CEF-2401",
         expiryDate: dayjs().add(24, "month").toDate(),
+        unitPrice: 1.20,
         quantity: 120,
         receivedAt: dayjs().subtract(30, "day").toDate(),
         supplier: "HealthDistrib Inc.",
@@ -191,6 +197,7 @@ const start = async () => {
       {
         batchNumber: "NACL-2401",
         expiryDate: dayjs().add(20, "day").toDate(),
+        unitPrice: 0.90,
         quantity: 300,
         receivedAt: dayjs().subtract(180, "day").toDate(),
         supplier: "HealthDistrib Inc.",
@@ -199,6 +206,7 @@ const start = async () => {
       {
         batchNumber: "HEP-2401",
         expiryDate: dayjs().add(8, "month").toDate(),
+        unitPrice: 2.50,
         quantity: 25,
         receivedAt: dayjs().subtract(25, "day").toDate(),
         supplier: "MedSupply Co.",
@@ -207,6 +215,7 @@ const start = async () => {
       {
         batchNumber: "OME-2401",
         expiryDate: dayjs().add(14, "month").toDate(),
+        unitPrice: 0.10,
         quantity: 240,
         receivedAt: dayjs().subtract(35, "day").toDate(),
         supplier: "PharmaLine Ltd.",
@@ -215,6 +224,7 @@ const start = async () => {
       {
         batchNumber: "MET-2401",
         expiryDate: dayjs().subtract(5, "day").toDate(),
+        unitPrice: 0.40,
         quantity: 30,
         receivedAt: dayjs().subtract(250, "day").toDate(),
         supplier: "HealthDistrib Inc.",
@@ -223,6 +233,7 @@ const start = async () => {
       {
         batchNumber: "MET-2402",
         expiryDate: dayjs().add(12, "month").toDate(),
+        unitPrice: 0.40,
         quantity: 100,
         receivedAt: dayjs().subtract(10, "day").toDate(),
         supplier: "HealthDistrib Inc.",
@@ -231,6 +242,7 @@ const start = async () => {
       {
         batchNumber: "INS-2401",
         expiryDate: dayjs().add(25, "day").toDate(),
+        unitPrice: 8.00,
         quantity: 15,
         receivedAt: dayjs().subtract(60, "day").toDate(),
         supplier: "MedSupply Co.",
@@ -239,6 +251,7 @@ const start = async () => {
       {
         batchNumber: "LID-2401",
         expiryDate: dayjs().add(12, "month").toDate(),
+        unitPrice: 0.35,
         quantity: 150,
         receivedAt: dayjs().subtract(45, "day").toDate(),
         supplier: "MedSupply Co.",

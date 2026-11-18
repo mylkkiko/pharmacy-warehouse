@@ -18,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <MantineProvider theme={theme} forceColorScheme="dark">
           <Notifications />
           {children}

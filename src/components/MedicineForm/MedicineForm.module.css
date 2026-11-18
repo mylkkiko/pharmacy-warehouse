@@ -1,0 +1,209 @@
+/* .dropdown is rendered in a portal outside .card, so it needs the variables too */
+.card,
+.dropdown {
+    --bg-modal: #212529;
+    --bg-input: #2c3036;
+    --accent-green: #10b981;
+    --accent-green-hover: #34d399;
+    --accent-forest: #059669;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.16);
+    --text-primary: #e6ebe9;
+    --text-secondary: #9ca3af;
+    --text-placeholder: #6b7280;
+    --required: #f87171;
+    --focus-ring: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    --transition: 160ms ease;
+}
+
+.card {
+    width: min(100%, 560px);
+    padding: 28px;
+    background-color: var(--bg-modal);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.title {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.description {
+    color: var(--text-secondary);
+}
+
+.close {
+    color: var(--text-secondary);
+    transition: color var(--transition), background-color var(--transition);
+}
+
+.close:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Inputs */
+
+.label {
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.required {
+    margin-inline-start: 2px;
+    color: var(--required);
+    font-weight: 400;
+}
+
+.input {
+    height: 40px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input::placeholder {
+    color: var(--text-placeholder);
+}
+
+.input:hover {
+    border-color: var(--border-hover);
+}
+
+.input:focus,
+.input:focus-within {
+    border-color: var(--accent-green);
+    box-shadow: var(--focus-ring);
+}
+
+.input[data-error] {
+    border-color: rgba(248, 113, 113, 0.6);
+}
+
+.section {
+    color: var(--text-placeholder);
+}
+
+.error {
+    font-size: 12px;
+}
+
+.controls {
+    border-inline-start: 1px solid var(--border-color);
+}
+
+.control {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+.control:hover {
+    color: var(--accent-green-hover);
+    background-color: rgba(16, 185, 129, 0.08);
+}
+
+/* Select dropdown */
+
+.dropdown {
+    padding: 4px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+.option {
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.option:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.option[data-combobox-selected],
+.option[data-combobox-selected]:hover {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #a7f3d0;
+}
+
+/* Actions */
+
+.actions {
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.cancel {
+    height: 40px;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    transition: color var(--transition), border-color var(--transition), background-color var(--transition);
+}
+
+.cancel:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.submit {
+    height: 40px;
+    padding: 0 20px;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-forest));
+    color: #0f1112;
+    font-weight: 600;
+    box-shadow: 0 6px 18px -6px rgba(16, 185, 129, 0.55);
+    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+}
+
+.submit:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 10px 24px -6px rgba(16, 185, 129, 0.7);
+    transform: translateY(-1px);
+}
+
+.submit:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+}
+
+.cancel:focus-visible,
+.submit:focus-visible,
+.close:focus-visible {
+    outline: 2px solid var(--accent-green-hover);
+    outline-offset: 2px;
+}
+
+@media (max-width: 36em) {
+    .card {
+        padding: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .input,
+    .close,
+    .cancel,
+    .submit {
+        transition: none;
+    }
+
+    .submit:hover {
+        transform: none;
+    }
+}

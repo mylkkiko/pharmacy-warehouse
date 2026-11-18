@@ -27,7 +27,7 @@ export const LoginForm = () => {
     const onSubmit = async (data: LoginInput) => {
         setError(null);
         const result = await auth(data);
-        if (result?.error) {
+        if(result?.error) {
             setError(result.error);
         }
     }

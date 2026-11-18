@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@mantine/core"
+import { Button, ButtonProps } from "@mantine/core"
 import Link from "next/link"
 import styles from "./LinkButton.module.css"
 
@@ -8,11 +8,19 @@ type LinkButtonProps = {
     href: string;
     leftSection?: React.ReactNode;
     children: React.ReactNode;
+    variant?: ButtonProps["variant"]
 };
 
-export const LinkButton = ({ href, leftSection, children }: LinkButtonProps) => {
+export const LinkButton = ({ href, leftSection, children, variant }: LinkButtonProps) => {
     return (
-        <Button component={Link} href={href} leftSection={leftSection} radius="xl" className={styles.button}>
+        <Button
+            component={Link}
+            href={href}
+            leftSection={leftSection}
+            variant={variant}
+            radius="xl"
+            className={variant ? undefined : styles.button}
+        >
             {children}
         </Button>
     )

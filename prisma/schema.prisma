@@ -39,6 +39,7 @@ model Batch {
   id String @id @default(cuid())
   batchNumber String 
   expiryDate DateTime
+  unitPrice Decimal @db.Decimal(10, 2) @default(0)
   quantity Int
   receivedAt DateTime @default(now())
   supplier String?

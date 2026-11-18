@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Batch" ADD COLUMN     "unitPrice" DECIMAL(10,2) NOT NULL DEFAULT 0;
