@@ -15,6 +15,7 @@ import { IconPackage } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import styles from '../MedicinesTable/MedicinesTable.module.css';
 import localStyles from './StockTable.module.css';
+import { WriteOffButton } from '../WriteOffButton/WriteOffButton';
 
 type StockRow = {
     id: string,
@@ -100,6 +101,17 @@ export const StockTable = ({ rows }: StockTableProps) => {
                                             {badge.label}
                                         </Badge>
                                     </TableTd>
+                                    <TableTd>
+                                        {row.status === "EXPIRED" ? (
+                                            <WriteOffButton
+                                                batchId={row.id}
+                                                medicine={row.medicine}
+                                                batchNumber={row.batchNumber}
+                                                quantity={row.quantity}
+                                                unit={row.unit}
+                                            />
+                                        ) : null}
+                                        </TableTd>
                                     <TableTd />
                                 </TableTr>
                             );
