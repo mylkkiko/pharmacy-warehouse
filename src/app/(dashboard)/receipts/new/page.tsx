@@ -1,12 +1,9 @@
 import { ReceiptForm } from "@/components/ReceiptForm/ReceiptForm";
-import prisma from "@/lib/prisma";
+import { medicineService } from "@/server/container";
 import { Paper } from "@mantine/core";
 
 export default async function CreateReceiptPage () {
-    const medicines = await prisma.medicine.findMany({
-        select: { id: true, name: true, dosage: true, unit: true },
-        orderBy: { name: "asc" }
-    });
+    const medicines = await medicineService.list("");
 
     const medicineOptions = medicines.map((medicine) => ({
         value: medicine.id,

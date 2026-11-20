@@ -2,8 +2,8 @@
 
 import { auth } from "@/lib/auth";
 import { ReceiptInput, receiptSchema } from "@/lib/validations/receipt";
-import { Prisma }  from "@/generated/prisma/client";
-import prisma from "@/lib/prisma";
+import { DuplicateBatchError } from "@/server/errors";
+import { receiptService } from "@/server/container";
 import { revalidatePath } from "next/cache";
 
 export async function createReceipt(data: ReceiptInput) {
@@ -11,20 +11,15 @@ export async function createReceipt(data: ReceiptInput) {
     if(!session?.user) {
         return { error: "Unauthorized" }
     }
-    const userId = session.user.id;
     const parsed = receiptSchema.safeParse(data);
     if(!parsed.success) {
         return { error: "Invalid data" };
     }
-    const { quantity } = parsed.data;
     try {
-        await prisma.$transaction(async(tx) => {
-            const batch = await tx.batch.create({ data: parsed.data});
-            await tx.movement.create({ data: { type: "RECEIPT", quantity, batchId: batch.id, userId } })
-        });
+        await receiptService.create(parsed.data, session.user.id);
     } catch(error) {
-        if(error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
-            return { error: "Batch with this number already exists for this medicine" }
+        if(error instanceof DuplicateBatchError) {
+            return { error: error.message }
         }
         return { error: "Could not create receipt" }
     }

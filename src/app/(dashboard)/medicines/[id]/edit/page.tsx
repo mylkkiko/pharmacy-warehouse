@@ -1,11 +1,11 @@
 import { MedicineForm } from "@/components/MedicineForm/MedicineForm";
 import { updateMedicine } from "@/lib/actions/updateMedicine";
-import prisma from "@/lib/prisma";
+import { medicineService } from "@/server/container";
 import { notFound } from "next/navigation";
 
 export default async function UpdateMedicinePage(props: PageProps<"/medicines/[id]/edit">) {
     const { id } = await props.params;
-    const medicine = await prisma.medicine.findUnique({ where: { id } });
+    const medicine = await medicineService.getById(id);
     if(!medicine) {
         return notFound();
     }

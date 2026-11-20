@@ -77,6 +77,7 @@ export const StockTable = ({ rows }: StockTableProps) => {
                             <TableTh>Quantity</TableTh>
                             <TableTh>Status</TableTh>
                             <TableTh className={styles.actionsTh} aria-label="Actions" />
+                            <TableTh className={styles.actionsTh} aria-label="Actions" />
                         </TableTr>
                     </TableThead>
                     <TableTbody>

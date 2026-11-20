@@ -1,8 +1,7 @@
 "use server"
 
 import { auth } from "@/lib/auth";
-import prisma from "@/lib/prisma";
-import { getBatchStatus } from "@/lib/stock";
+import { writeOffService } from "@/server/container";
 import { revalidatePath } from "next/cache";
 
 export async function writeOffBatch(batchId: string) {
@@ -10,37 +9,14 @@ export async function writeOffBatch(batchId: string) {
     if (!session?.user) {
         return { error: "Unauthorized" };
     }
-    const batch = await prisma.batch.findUnique({
-        where: { id: batchId }
-    });
-    if (!batch) {
-        return { error: "Batch not found" }
-    }
-    if(batch.quantity <= 0) {
-        return { error: "Batch is already empty" }
-    }
-    const batchStatus = getBatchStatus(batch.expiryDate);
-    if(batchStatus !== "EXPIRED") {
-        return { error: "Only expired batches can be written off" }
-    }
+    let result;
     try {
-        await prisma.$transaction(async(tx) => {
-            await tx.movement.create({
-                data: {
-                    type: "WRITE_OFF",
-                    quantity: batch.quantity, 
-                    note: "expired",
-                    batchId,
-                    userId: session.user.id
-                }
-            });
-            await tx.batch.update({
-                where: { id: batchId },
-                data: { quantity: 0 }
-            })
-        })
+        result = await writeOffService.writeOff(batchId, session.user.id);
     } catch {
         return { error: "Could not write off batch" }
+    }
+    if ("error" in result) {
+        return { error: result.error }
     }
     revalidatePath("/stock");
     revalidatePath("/medicines");

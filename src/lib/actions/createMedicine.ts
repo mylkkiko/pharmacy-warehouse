@@ -2,9 +2,9 @@
 
 import { auth } from "@/lib/auth";
 import { MedicineInput, medicineSchema } from "@/lib/validations/medicine";
-import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { medicineService } from "@/server/container";
 
 export async function createMedicine(data: MedicineInput) {
     const session = await auth();
@@ -16,7 +16,7 @@ export async function createMedicine(data: MedicineInput) {
         return { error: "Invalid data" };
     }
     try {
-        await prisma.medicine.create({ data: parsed.data });
+        await medicineService.create(parsed.data);
     } catch {
         return { error: "Could not create medicine" }
     }

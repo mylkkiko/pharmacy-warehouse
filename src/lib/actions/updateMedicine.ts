@@ -1,8 +1,8 @@
 "use server"
 
 import { auth } from "@/lib/auth";
-import prisma from "@/lib/prisma";
 import { MedicineInput, medicineSchema } from "@/lib/validations/medicine";
+import { medicineService } from "@/server/container";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -16,7 +16,7 @@ export async function updateMedicine(id: string, data: MedicineInput) {
         return { error: "Invalid data" };
     }
     try {
-        await prisma.medicine.update({ where: { id }, data: parsed.data } );
+        await medicineService.update(id, parsed.data);
     } catch {
         return { error: "Could not update medicine" };
     }
