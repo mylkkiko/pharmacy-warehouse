@@ -126,3 +126,37 @@ export type Repositories = {
 export interface TransactionRunner {
     run<T>(fn: (repos: Repositories) => Promise<T>): Promise<T>
 }
+
+export type UserRole = "ADMIN" | "PHARMACIST";
+
+export type UserRecord = {
+    id: string,
+    name: string,
+    email: string,
+    role: UserRole,
+    isActive: boolean,
+    createdAt: Date
+}
+
+export type NewUser = {
+    name: string,
+    email: string,
+    passwordHash: string,
+    role: UserRole
+}
+
+export type UserUpdate = {
+    name: string,
+    email: string,
+    role: UserRole,
+    passwordHash?: string
+}
+
+export interface UserRepository {
+    findAll: () => Promise<UserRecord[]>,
+    findById: (id: string) => Promise<UserRecord | null>,
+    create: (data: NewUser) => Promise<void>,
+    update: (id: string, data: UserUpdate) => Promise<void>,
+    setActive: (id: string, isActive: boolean) => Promise<void>,
+    countActiveAdmins: () => Promise<number>,
+}

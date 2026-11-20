@@ -18,3 +18,31 @@ export class StockChangedError extends Error {
         this.name = "StockChangedError";
     }
 }
+
+export class DuplicateEmailError extends Error {
+    constructor() {
+        super("User with this email already exists");
+        this.name = "DuplicateEmailError";
+    }
+}
+
+export class UserNotFoundError extends Error {
+    constructor() {
+        super("User not found");
+        this.name = "UserNotFoundError";
+    }
+}
+
+export class CannotDeactivateSelfError extends Error {
+    constructor() {
+        super("You cannot deactivate your own account");
+        this.name = "CannotDeactivateSelfError";
+    }
+}
+
+export class LastAdminError extends Error {
+    constructor() {
+        super("There must be at least one active admin");
+        this.name = "LastAdminError";
+    }
+}

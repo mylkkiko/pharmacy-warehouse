@@ -19,7 +19,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                         email: parsed.data.email,
                     }
                 });
-                if(!user) {
+                if(!user || !user.isActive) {
                     return null;
                 }
                 const isValid = await bcrypt.compare(parsed.data.password, user.passwordHash);

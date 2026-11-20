@@ -1,0 +1,40 @@
+.nowrap {
+    white-space: nowrap;
+}
+
+.badge {
+    height: 24px;
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.admin {
+    background-color: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #a7f3d0;
+}
+
+.pharmacist {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e6ebe9;
+}
+
+.active {
+    background-color: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #a7f3d0;
+}
+
+.inactive {
+    background-color: rgba(154, 165, 161, 0.12);
+    border: 1px solid rgba(154, 165, 161, 0.3);
+    color: #9aa5a1;
+}
+
+.actionsTh {
+    width: 220px;
+}
