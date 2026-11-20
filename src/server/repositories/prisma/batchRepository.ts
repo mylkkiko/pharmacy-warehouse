@@ -63,6 +63,30 @@ export function createPrismaBatchRepository(client: Prisma.TransactionClient): B
         },
         async setQuantity(id: string, quantity: number): Promise<void> {
             await client.batch.update({ where: { id }, data: { quantity } });
+        },
+        async findAvailableForIssue(medicineId: string, from: Date): Promise<BatchRecord[]> {
+            return client.batch.findMany({
+                where: {
+                    medicineId,
+                    quantity: { gt: 0 },
+                    expiryDate: { gte: from }
+                },
+                orderBy: { expiryDate: "asc" },
+                select: {
+                    id: true,
+                    medicineId: true,
+                    batchNumber: true,
+                    expiryDate: true,
+                    quantity: true
+                }
+            });
+        },
+        async decrementIfEnough(id: string, amount: number): Promise<boolean> {
+            const result = await client.batch.updateMany({
+                where: { id, quantity: { gte: amount } },
+                data: { quantity: { decrement: amount } }
+            });
+            return result.count > 0;
         }
     }
 }

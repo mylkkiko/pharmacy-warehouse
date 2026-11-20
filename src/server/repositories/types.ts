@@ -16,7 +16,7 @@ export interface MedicineRepository {
     findMany: (search: string) => Promise<MedicineWithStock[]>,
     findById: (id: string) => Promise<Medicine | null>,
     create: (data: MedicineData) => Promise<void>,
-    update: (id: string, MedicineData: MedicineData) => Promise<void>,
+    update: (id: string, data: MedicineData) => Promise<void>,
 }
 
 export type MovementType = "RECEIPT" | "ISSUE" | "WRITE_OFF";
@@ -77,17 +77,45 @@ export type ReceiptRecord = {
     receivedBy: string
 }
 
+export type IssueRecord = {
+    id: string,
+    date: Date,
+    medicine: string,
+    batchNumber: string,
+    quantity: number,
+    unit: string,
+    note: string | null,
+    issuedBy: string
+}
+
+export type MovementRecord = {
+    id: string,
+    date: Date,
+    type: MovementType,
+    medicine: string,
+    batchNumber: string,
+    quantity: number,
+    unit: string,
+    user: string,
+    note: string | null
+}
+
 export interface BatchRepository {
     create: (data: NewBatch) => Promise<string>,
     findById: (id: string) => Promise<BatchRecord | null>,
     findForStock: (filter: StockFilter) => Promise<StockRecord[]>,
     setQuantity: (id: string, quantity: number) => Promise<void>,
+    findAvailableForIssue: (medicineId: string, from: Date) => Promise<BatchRecord[]>,
+    decrementIfEnough: (id: string, amount: number) => Promise<boolean>
 }
 
 export interface MovementRepository {
     create: (data: NewMovement) => Promise<void>,
     findRecentReceipts: (limit: number) => Promise<ReceiptRecord[]>,
     countReceipts: () => Promise<number>,
+    findRecentIssues: (limit: number) => Promise<IssueRecord[]>,
+    countIssues: () => Promise<number>,
+    findAll: (limit: number) => Promise<MovementRecord[]>,
 }
 
 export type Repositories = {

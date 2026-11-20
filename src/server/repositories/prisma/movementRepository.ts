@@ -1,5 +1,5 @@
 import { Prisma } from "@/generated/prisma/client";
-import { MovementRepository, NewMovement, ReceiptRecord } from "../types";
+import { IssueRecord, MovementRecord, MovementRepository, NewMovement, ReceiptRecord } from "../types";
 
 export function createPrismaMovementRepository(client: Prisma.TransactionClient): MovementRepository {
     return {
@@ -34,6 +34,59 @@ export function createPrismaMovementRepository(client: Prisma.TransactionClient)
         },
         async countReceipts(): Promise<number> {
             return client.movement.count({ where: { type: "RECEIPT" } });
+        },
+        async findRecentIssues(limit: number): Promise<IssueRecord[]> {
+            const issues = await client.movement.findMany({
+                where: { type: "ISSUE" },
+                orderBy: { createdAt: "desc" },
+                take: limit,
+                include: {
+                    batch: {
+                        include: { medicine: true }
+                    },
+                    user: {
+                        select: { name: true }
+                    }
+                }
+            });
+            return issues.map((movement) => ({
+                id: movement.id,
+                date: movement.createdAt,
+                medicine: movement.batch.medicine.name,
+                batchNumber: movement.batch.batchNumber,
+                quantity: movement.quantity,
+                unit: movement.batch.medicine.unit,
+                note: movement.note,
+                issuedBy: movement.user.name
+            }));
+        },
+        async countIssues(): Promise<number> {
+            return client.movement.count({ where: { type: "ISSUE" } });
+        },
+        async findAll(limit: number): Promise<MovementRecord[]> {
+            const movements = await client.movement.findMany({
+                orderBy: { createdAt: "desc" },
+                take: limit,
+                include: {
+                    batch: {
+                        include: { medicine: true }
+                    },
+                    user: {
+                        select: { name: true }
+                    }
+                }
+            });
+            return movements.map((movement) => ({
+                id: movement.id,
+                date: movement.createdAt,
+                type: movement.type,
+                medicine: movement.batch.medicine.name,
+                batchNumber: movement.batch.batchNumber,
+                quantity: movement.quantity,
+                unit: movement.batch.medicine.unit,
+                user: movement.user.name,
+                note: movement.note
+            }));
         }
     }
 }
