@@ -113,7 +113,6 @@ export interface BatchRepository {
     create: (data: NewBatch) => Promise<string>,
     findById: (id: string) => Promise<BatchRecord | null>,
     findForStock: (filter: StockFilter) => Promise<StockRecord[]>,
-    setQuantity: (id: string, quantity: number) => Promise<void>,
     findAvailableForIssue: (medicineId: string, from: Date) => Promise<BatchRecord[]>,
     decrementIfEnough: (id: string, amount: number) => Promise<boolean>
 }

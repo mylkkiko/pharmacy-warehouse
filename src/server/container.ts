@@ -17,9 +17,9 @@ import { createWriteOffService } from "./services/writeOffService";
 const medicineRepository = createPrismaMedicineRepository();
 export const medicineService = createMedicineService(medicineRepository);
 
-export const transactionRunner = createPrismaTransactionRunner();
-export const batchRepository = createPrismaBatchRepository(prisma);
-export const movementRepository = createPrismaMovementRepository(prisma);
+const transactionRunner = createPrismaTransactionRunner();
+const batchRepository = createPrismaBatchRepository(prisma);
+const movementRepository = createPrismaMovementRepository(prisma);
 
 export const receiptService = createReceiptService(transactionRunner, movementRepository);
 export const stockService = createStockService(batchRepository);

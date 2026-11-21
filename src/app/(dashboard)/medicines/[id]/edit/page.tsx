@@ -1,6 +1,7 @@
 import { MedicineForm } from "@/components/MedicineForm/MedicineForm";
 import { updateMedicine } from "@/lib/actions/updateMedicine";
 import { medicineService } from "@/server/container";
+import { Center } from "@mantine/core";
 import { notFound } from "next/navigation";
 
 export default async function UpdateMedicinePage(props: PageProps<"/medicines/[id]/edit">) {
@@ -11,18 +12,21 @@ export default async function UpdateMedicinePage(props: PageProps<"/medicines/[i
     }
 
     return (
-        <MedicineForm
-            action={updateMedicine.bind(null, medicine.id)}
-            defaultValues={{
-                name: medicine.name,
-                activeIngredient: medicine.activeIngredient,
-                form: medicine.form,
-                dosage: medicine.dosage,
-                unit: medicine.unit,
-                minStock: medicine.minStock,
-            }}
-            title="Edit medicine"
-            submitLabel="Save"
-        />
+        <Center py="xl">
+            <MedicineForm
+                action={updateMedicine.bind(null, medicine.id)}
+                defaultValues={{
+                    name: medicine.name,
+                    activeIngredient: medicine.activeIngredient,
+                    form: medicine.form,
+                    dosage: medicine.dosage,
+                    unit: medicine.unit,
+                    minStock: medicine.minStock,
+                }}
+                title="Edit medicine"
+                description="Update the medicine's details"
+                submitLabel="Save"
+            />
+        </Center>
     )
 }

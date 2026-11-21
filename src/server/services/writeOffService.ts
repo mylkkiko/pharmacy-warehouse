@@ -1,4 +1,5 @@
 import { getBatchStatus } from "@/lib/stock";
+import { StockChangedError } from "../errors";
 import { BatchRepository, TransactionRunner } from "../repositories/types";
 
 export function createWriteOffService(tx: TransactionRunner, batches: BatchRepository) {
@@ -15,8 +16,11 @@ export function createWriteOffService(tx: TransactionRunner, batches: BatchRepos
                 return { error: "Only expired batches can be written off" };
             }
             await tx.run(async (repos) => {
+                const ok = await repos.batches.decrementIfEnough(batchId, batch.quantity);
+                if (!ok) {
+                    throw new StockChangedError();
+                }
                 await repos.movements.create({ type: "WRITE_OFF", quantity: batch.quantity, note: "Expired", batchId, userId });
-                await repos.batches.setQuantity(batchId, 0);
             });
             return { success: true };
         }

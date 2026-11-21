@@ -23,6 +23,7 @@ export default async function EditUserPage(props: PageProps<"/admin/users/[id]/e
                     role: user.role
                 }}
                 title="Edit user"
+                description="Update the user's details and role"
                 submitLabel="Save"
             />
         </Center>

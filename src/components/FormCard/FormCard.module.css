@@ -1,6 +1,16 @@
-/* .dropdown is rendered in a portal outside .card, so it needs the variables too */
+/*
+ * Variables are declared on every class that can be rendered outside .card:
+ * dropdowns are portalled, and LoginForm uses the input classes without the card.
+ */
 .card,
-.dropdown {
+.dropdown,
+.label,
+.required,
+.input,
+.section,
+.error,
+.controls,
+.control {
     --bg-modal: #212529;
     --bg-input: #2c3036;
     --accent-green: #10b981;
@@ -91,6 +101,12 @@
 
 .input[data-error] {
     border-color: rgba(248, 113, 113, 0.6);
+}
+
+textarea.input {
+    height: auto;
+    min-height: 88px;
+    padding-block: 10px;
 }
 
 .section {
@@ -192,6 +208,10 @@
 @media (max-width: 36em) {
     .card {
         padding: 20px;
+    }
+
+    .actions {
+        flex-wrap: wrap;
     }
 }
 

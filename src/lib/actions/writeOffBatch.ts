@@ -2,6 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { writeOffService } from "@/server/container";
+import { StockChangedError } from "@/server/errors";
 import { revalidatePath } from "next/cache";
 
 export async function writeOffBatch(batchId: string) {
@@ -12,7 +13,10 @@ export async function writeOffBatch(batchId: string) {
     let result;
     try {
         result = await writeOffService.writeOff(batchId, session.user.id);
-    } catch {
+    } catch (error) {
+        if (error instanceof StockChangedError) {
+            return { error: error.message }
+        }
         return { error: "Could not write off batch" }
     }
     if ("error" in result) {

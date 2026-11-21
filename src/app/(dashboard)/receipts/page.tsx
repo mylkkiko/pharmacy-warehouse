@@ -5,7 +5,7 @@ import { Group, Stack, Text, Title } from "@mantine/core"
 import { IconPlus } from "@tabler/icons-react"
 import styles from "../medicines/page.module.css"
 
-export default async function Receipts(props: PageProps<"/receipts">) {
+export default async function Receipts() {
     const [receipts, totalCount] = await Promise.all([
         receiptService.listRecent(20),
         receiptService.count()

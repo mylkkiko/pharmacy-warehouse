@@ -6,13 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginInput, loginSchema } from "@/lib/validations/auth";
 import { auth } from "@/lib/actions/auth";
 import { Alert, Button, PasswordInput, Stack, TextInput } from "@mantine/core";
+import { inputClassNames } from "@/components/FormCard/formClassNames";
 import styles from "./LoginForm.module.css";
-
-const inputClassNames = {
-    label: styles.label,
-    required: styles.required,
-    input: styles.input,
-};
 
 export const LoginForm = () => {
     const [error, setError] = useState<string | null>(null);

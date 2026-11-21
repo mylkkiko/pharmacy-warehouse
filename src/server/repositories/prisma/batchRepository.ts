@@ -61,9 +61,6 @@ export function createPrismaBatchRepository(client: Prisma.TransactionClient): B
                 unit: batch.medicine.unit
             }));
         },
-        async setQuantity(id: string, quantity: number): Promise<void> {
-            await client.batch.update({ where: { id }, data: { quantity } });
-        },
         async findAvailableForIssue(medicineId: string, from: Date): Promise<BatchRecord[]> {
             return client.batch.findMany({
                 where: {

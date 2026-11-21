@@ -1,6 +1,6 @@
 import { IssueForm } from "@/components/IssueForm/IssueForm";
 import { medicineService } from "@/server/container";
-import { Paper } from "@mantine/core";
+import { Center } from "@mantine/core";
 
 export default async function CreateIssuePage() {
     const medicines = await medicineService.list("");
@@ -12,8 +12,8 @@ export default async function CreateIssuePage() {
     }));
 
     return (
-        <Paper withBorder p="lg" maw={700}>
+        <Center py="xl">
             <IssueForm medicineOptions={medicineOptions} />
-        </Paper>
+        </Center>
     )
 }

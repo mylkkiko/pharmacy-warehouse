@@ -1,6 +1,6 @@
 import { ReceiptForm } from "@/components/ReceiptForm/ReceiptForm";
 import { medicineService } from "@/server/container";
-import { Paper } from "@mantine/core";
+import { Center } from "@mantine/core";
 
 export default async function CreateReceiptPage () {
     const medicines = await medicineService.list("");
@@ -12,8 +12,8 @@ export default async function CreateReceiptPage () {
     }));
 
     return (
-        <Paper withBorder p="lg" maw={700}>
+        <Center py="xl">
             <ReceiptForm medicineOptions={medicineOptions} />
-        </Paper>
+        </Center>
     )
 }
