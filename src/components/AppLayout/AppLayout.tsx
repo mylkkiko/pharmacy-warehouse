@@ -15,6 +15,7 @@ import {
     IconPill,
     IconPackageExport,
     IconHistory,
+    IconCash,
     IconLogout
 } from '@tabler/icons-react';
 
@@ -25,6 +26,7 @@ const links: SidebarLink[] = [
     { label: "Stock", href: "/stock", icon: IconBuildingWarehouse },
     { label: "Issue", href: "/issue", icon: IconPackageExport },
     { label: "Movements", href: "/movements", icon: IconHistory },
+    { label: "Finance", href: "/finance", icon: IconCash },
     { label: "Users", href: "/admin/users", icon: IconUsers, adminOnly: true }
 ]
 

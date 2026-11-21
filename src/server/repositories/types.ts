@@ -77,6 +77,15 @@ export type ReceiptRecord = {
     receivedBy: string
 }
 
+export type FinanceReceipt = ReceiptRecord & { total: number };
+
+export type FinanceSummary = {
+    totalSpent: number,
+    receiptsCount: number,
+    writeOffLoss: number,
+    receipts: FinanceReceipt[]
+}
+
 export type IssueRecord = {
     id: string,
     date: Date,
@@ -116,6 +125,8 @@ export interface MovementRepository {
     findRecentIssues: (limit: number) => Promise<IssueRecord[]>,
     countIssues: () => Promise<number>,
     findAll: (limit: number) => Promise<MovementRecord[]>,
+    findReceiptsBetween: (from: Date | null, to: Date | null) => Promise<ReceiptRecord[]>,
+    sumWriteOffValueBetween: (from: Date | null, to: Date | null) => Promise<number>,
 }
 
 export type Repositories = {

@@ -5,6 +5,7 @@ import { createPrismaMovementRepository } from "./repositories/prisma/movementRe
 import { createPrismaTransactionRunner } from "./repositories/prisma/transaction";
 import { createPrismaUserRepository } from "./repositories/prisma/userRepository";
 import { createDashboardService } from "./services/dashboardService";
+import { createFinanceService } from "./services/financeService";
 import { createIssueService } from "./services/issueService";
 import { createMedicineService } from "./services/medicineService";
 import { createMovementService } from "./services/movementService";
@@ -29,3 +30,4 @@ export const dashboardService = createDashboardService(medicineRepository, batch
 
 const userRepository = createPrismaUserRepository(prisma);
 export const userService = createUserService(userRepository);
+export const financeService = createFinanceService(movementRepository);
